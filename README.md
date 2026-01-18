@@ -7,7 +7,7 @@
 |問題名|出典|備考|回答|
 |-|-|-|-|
 |[Forbidden List 2](https://atcoder.jp/contests/abc440/tasks/abc440_d)|ABC 440 - D|二分探索|[ruby](./problems/1Q/abc440/d/abc440_d.rb)|
-|[Teleport Maze](https://atcoder.jp/contests/abc436/tasks/abc436_d)|ABC 436 - D|||
+|[Teleport Maze](https://atcoder.jp/contests/abc436/tasks/abc436_d)|ABC 436 - D|幅優先探索(BFS)|[ruby](./problems/1Q/abc436/d/abc436_d.rb)|
 |[Reachability Query 2](https://atcoder.jp/contests/abc435/tasks/abc435_d)|ABC 435 - D|||
 |[Clouds](https://atcoder.jp/contests/abc434/tasks/abc434_d)|ABC 434 - D|||
 |[183183](https://atcoder.jp/contests/abc433/tasks/abc433_d)|ABC 433 - D|||
