@@ -123,7 +123,7 @@
 |[Defect-free Squares](https://atcoder.jp/contests/abc311/tasks/abc311_e)|ABC 311 - E|||
 |[Peaceful Teams](https://atcoder.jp/contests/abc310/tasks/abc310_d)|ABC 310 - D|||
 |[Family and Insurance](https://atcoder.jp/contests/abc309/tasks/abc309_e)|ABC 309 - E|||
-|[MEX](https://atcoder.jp/contests/abc308/tasks/abc308_e)|ABC 308 - E|||
+|[MEX](https://atcoder.jp/contests/abc308/tasks/abc308_e)|ABC 308 - E|累積和, 真ん中決め打ち|[ruby](./problems/1Q/abc308/e/abc308_e.rb)|
 |[Vouchers](https://atcoder.jp/contests/abc308/tasks/abc308_f)|ABC 308 - F|||
 |[Distinct Adjacent](https://atcoder.jp/contests/abc307/tasks/abc307_e)|ABC 307 - E|||
 |[Art Gallery on Graph](https://atcoder.jp/contests/abc305/tasks/abc305_e)|ABC 305 - E|||
