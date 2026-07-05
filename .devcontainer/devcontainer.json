@@ -33,11 +33,8 @@
     "source=atcoder-acc-config,target=/home/vscode/.config/atcoder-cli-nodejs,type=volume"
   ],
 
-  // コンテナ生成時に oj / acc / gem をインストール(バージョンピン)。
-  // 先頭の chown: volume マウントで root 所有になる ~/.local ~/.config を vscode に戻す
-  // (これがないと uv が ~/.local/share/uv/tools を作れず Permission denied になる)。
-  // uv tool install = pipx 相当。oj 実行用 Python は uv が自動で用意する。
-  "postCreateCommand": "sudo chown -R vscode:vscode /home/vscode/.local /home/vscode/.config && uv tool install online-judge-tools==11.5.1 && npm install -g atcoder-cli@2.2.0 && bundle install",
+  // コンテナ生成時のセットアップ(chown / oj / パッチ / acc / gem)は post-create.sh に集約。
+  "postCreateCommand": "bash .devcontainer/post-create.sh",
 
   "customizations": {
     "vscode": {

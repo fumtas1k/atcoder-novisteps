@@ -1,0 +1,71 @@
+diff --git a/onlinejudge/service/atcoder.py b/onlinejudge/service/atcoder.py
+index e558f24..48903f1 100644
+--- a/onlinejudge/service/atcoder.py
++++ b/onlinejudge/service/atcoder.py
+@@ -542,10 +542,10 @@ def _from_table_row(cls, tr: bs4.Tag, *, session: requests.Session, response: re
+             time_limit_msec = int(float(utils.remove_suffix(tds[2].text, ' sec')) * 1000)
+         else:
+             assert False
+-        if tds[3].text.endswith(' KB'):
+-            memory_limit_byte = int(float(utils.remove_suffix(tds[3].text, ' KB')) * 1000)
+-        elif tds[3].text.endswith(' MB'):
+-            memory_limit_byte = int(float(utils.remove_suffix(tds[3].text, ' MB')) * 1000 * 1000)  # TODO: confirm this is MB truly, not MiB
++        if tds[3].text.endswith(' KiB'):
++            memory_limit_byte = int(float(utils.remove_suffix(tds[3].text, ' KiB')) * 1024)
++        elif tds[3].text.endswith(' MiB'):
++            memory_limit_byte = int(float(utils.remove_suffix(tds[3].text, ' MiB')) * 1024 * 1024)  # TODO: confirm this is MB truly, not MiB
+         else:
+             assert False
+         if len(tds) == 5:
+@@ -583,15 +583,15 @@ def _from_html(cls, html: bytes, *, problem: 'AtCoderProblem', session: Optional
+             assert False
+
+         # When login as the admin, a link is added after memory limit. See https://github.com/online-judge-tools/api-client/issues/90
+-        parsed_memory_limit = re.search(r'^(メモリ制限|Memory Limit): ([0-9.]+) (KB|MB)', memory_limit)
++        parsed_memory_limit = re.search(r'^(メモリ制限|Memory Limit): ([0-9.]+) (KiB|MiB)', memory_limit)
+         assert parsed_memory_limit
+
+         memory_limit_value = parsed_memory_limit.group(2)
+         memory_limit_unit = parsed_memory_limit.group(3)
+-        if memory_limit_unit == 'KB':
+-            memory_limit_byte = int(float(memory_limit_value) * 1000)
+-        elif memory_limit_unit == 'MB':
+-            memory_limit_byte = int(float(memory_limit_value) * 1000 * 1000)
++        if memory_limit_unit == 'KiB':
++            memory_limit_byte = int(float(memory_limit_value) * 1024)
++        elif memory_limit_unit == 'MiB':
++            memory_limit_byte = int(float(memory_limit_value) * 1024 * 1024)
+         else:
+             assert False
+
+@@ -1160,7 +1160,7 @@ def _from_table_row(cls, tr: bs4.Tag, *, session: requests.Session, response: re
+         status = tds[6].text
+         if len(tds) == 10:
+             exec_time_msec = int(utils.remove_suffix(tds[7].text, ' ms'))  # type: Optional[int]
+-            memory_byte = int(utils.remove_suffix(tds[8].text, ' KB')) * 1000  # type: Optional[int]
++            memory_byte = int(utils.remove_suffix(tds[8].text, ' KiB')) * 1024  # type: Optional[int]
+         else:
+             exec_time_msec = None
+             memory_byte = None
+diff --git a/onlinejudge_api/get_problem.py b/onlinejudge_api/get_problem.py
+index f357ff8..9d7fdec 100644
+--- a/onlinejudge_api/get_problem.py
++++ b/onlinejudge_api/get_problem.py
+@@ -67,7 +67,7 @@
+         },
+         "memoryLimit": {
+             "type": "integer",
+-            "description": "in megabytes (MB), not in mebibytes (MiB); Decimals are truncated for compatibility to competitive-companion",
++            "description": "in mebibytes (MiB), not in megabytes (MB); Decimals are truncated for compatibility to competitive-companion",
+         },
+         "timeLimit": {
+             "type": "integer",
+@@ -316,7 +316,7 @@ def main(problem: Problem, *, is_system: bool, is_compatibility: bool, is_full:
+             },
+             "alphabet": data.alphabet,
+         }
+-        result["memoryLimit"] = data.memory_limit_byte // 1000 // 1000
++        result["memoryLimit"] = data.memory_limit_byte // 1024 // 1024
+         result["timeLimit"] = data.time_limit_msec
+         if is_full:
+             result["raw"] = {
