@@ -26,5 +26,11 @@ fi
 # acc(atcoder-cli)
 npm install -g atcoder-cli@2.2.0
 
+# acc の既定設定・テンプレート(ruby)を配置。
+# config.json / ruby テンプレを上書きし、session.json(認証)は残す。
+# oj-path は含めない → acc は PATH 上の oj を使う。
+mkdir -p "$HOME/.config/atcoder-cli-nodejs"
+cp -r "$here/acc-config/." "$HOME/.config/atcoder-cli-nodejs/"
+
 # gem
 bundle install

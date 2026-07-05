@@ -66,6 +66,19 @@ oj test -c "ruby main.rb" -d tests
 acc submit main.rb
 ```
 
+## acc の既定設定・テンプレート
+
+`acc-config/` の内容を `post-create.sh` が `~/.config/atcoder-cli-nodejs/` に配置する
+（`config.json` と `ruby` テンプレート）。これで `acc new` 時にディレクトリ命名や
+既定テンプレートがホストと同じになる。`session.json`（認証）は上書きされず残る。
+
+- `acc-config/config.json` … 命名フォーマット、`default-template: ruby` など。
+  `oj-path` は含めない（コンテナは PATH 上の `oj` を使う）
+- `acc-config/ruby/` … `main.rb`（ac-library-rb / rbtree などの雛形）と `template.json`
+
+設定やテンプレを変えたいときは `acc-config/` を編集して再ビルド（または `post-create.sh`
+の該当行を再実行）。
+
 ## 言語を増やすとき
 
 - ランタイムを `devcontainer.json` の `features` に追加（例: Go, C++ など）
