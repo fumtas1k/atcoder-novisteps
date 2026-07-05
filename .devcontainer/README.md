@@ -16,15 +16,35 @@ VS Code の「Dev Containers」拡張、GitHub Codespaces、または `devcontai
 
 これらは `postCreateCommand` でコンテナ生成時に自動導入される。
 
-## 初回だけやること：ログイン
+## 初回だけやること：ログイン（Cloudflare 対応）
 
-認証 Cookie はマシンごとの秘密なのでイメージには含めない。コンテナ内ターミナルで一度だけ実行する。
-（Cookie は名前付き volume に永続化されるので、以降のリビルドでは再ログイン不要。）
+現在の AtCoder はログイン時に Cloudflare のチェックが入るため、コンテナ内からの
+`oj login` / `acc login` は通らない。代わりに **ブラウザで取得した `REVEL_SESSION`
+Cookie を oj と acc の両方に流し込む**（ヘルパースクリプトが両方に書き込む）。
 
-```sh
-oj login https://atcoder.jp/
-acc login
-```
+- oj  : `~/.local/share/online-judge-tools/cookie.jar`（LWPCookieJar 形式）
+- acc : `~/.config/atcoder-cli-nodejs/session.json`（`{"cookies":["name=value",...]}`）
+
+認証はマシンごとの秘密なのでイメージには含めない。
+（どちらも名前付き volume に永続化されるので、以降のリビルドでは再取得不要。）
+
+1. 普段のブラウザで AtCoder にログイン（Cloudflare を通過しておく）
+2. DevTools → Application/Storage → Cookies → `https://atcoder.jp` → **`REVEL_SESSION` の Value をコピー**
+3. コンテナ内ターミナルで:
+
+   ```sh
+   uv run --no-project .devcontainer/set-atcoder-session.py
+   # プロンプトに REVEL_SESSION の値を貼り付ける
+   ```
+
+4. 確認:
+
+   ```sh
+   oj login --check https://atcoder.jp/
+   ```
+
+スクリプトは oj・acc 両方に同じ値を書くので、`acc new`（要ログインの一部機能含む）も
+`acc submit` / `oj submit` も通る。値が切れたら手順 1〜3 を再実行する。
 
 ## 使い方（一例）
 
