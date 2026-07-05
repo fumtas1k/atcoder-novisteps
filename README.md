@@ -6,8 +6,8 @@
 
 |問題名|出典|備考|回答|
 |-|-|-|-|
-|[Forbidden List 2](https://atcoder.jp/contests/abc440/tasks/abc440_d)|ABC 440 - D|二分探索|[ruby](./problems/1Q/abc440/d/abc440_d.rb)|
-|[Teleport Maze](https://atcoder.jp/contests/abc436/tasks/abc436_d)|ABC 436 - D|幅優先探索(BFS)|[ruby](./problems/1Q/abc436/d/abc436_d.rb)|
+|[Forbidden List 2](https://atcoder.jp/contests/abc440/tasks/abc440_d)|ABC 440 - D|二分探索|[ruby](./problems/1Q/abc440/d/main.rb)|
+|[Teleport Maze](https://atcoder.jp/contests/abc436/tasks/abc436_d)|ABC 436 - D|幅優先探索(BFS)|[ruby](./problems/1Q/abc436/d/main.rb)|
 |[Reachability Query 2](https://atcoder.jp/contests/abc435/tasks/abc435_d)|ABC 435 - D|||
 |[Clouds](https://atcoder.jp/contests/abc434/tasks/abc434_d)|ABC 434 - D|||
 |[183183](https://atcoder.jp/contests/abc433/tasks/abc433_d)|ABC 433 - D|||
@@ -123,7 +123,7 @@
 |[Defect-free Squares](https://atcoder.jp/contests/abc311/tasks/abc311_e)|ABC 311 - E|||
 |[Peaceful Teams](https://atcoder.jp/contests/abc310/tasks/abc310_d)|ABC 310 - D|||
 |[Family and Insurance](https://atcoder.jp/contests/abc309/tasks/abc309_e)|ABC 309 - E|||
-|[MEX](https://atcoder.jp/contests/abc308/tasks/abc308_e)|ABC 308 - E|累積和, 真ん中決め打ち|[ruby](./problems/1Q/abc308/e/abc308_e.rb)|
+|[MEX](https://atcoder.jp/contests/abc308/tasks/abc308_e)|ABC 308 - E|累積和, 真ん中決め打ち|[ruby](./problems/1Q/abc308/e/main.rb)|
 |[Vouchers](https://atcoder.jp/contests/abc308/tasks/abc308_f)|ABC 308 - F|||
 |[Distinct Adjacent](https://atcoder.jp/contests/abc307/tasks/abc307_e)|ABC 307 - E|||
 |[Art Gallery on Graph](https://atcoder.jp/contests/abc305/tasks/abc305_e)|ABC 305 - E|||
