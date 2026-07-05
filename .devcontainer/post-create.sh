@@ -23,6 +23,11 @@ else
   echo "applied oj-atcoder-memory.patch to $site"
 fi
 
+# statusLine スクリプト(.claude/statusline-command.sh)が使う jq を用意(未導入なら)。
+if ! command -v jq >/dev/null 2>&1; then
+  sudo apt-get update && sudo apt-get install -y --no-install-recommends jq
+fi
+
 # acc(atcoder-cli)
 npm install -g atcoder-cli@2.2.0
 
