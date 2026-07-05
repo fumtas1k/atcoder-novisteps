@@ -43,3 +43,12 @@ bundle install
 # ruby-lsp: Claude の ruby-lsp プラグインが bare `ruby-lsp` コマンドを起動するため
 # グローバルに導入(プロジェクトの gem は ruby-lsp が bundle を検出して解決する)。
 gem install ruby-lsp
+
+# シェルヘルパー(atcr / rtest / ropen)を bash で有効化。
+# ~/.bashrc は volume 非永続でリビルドのたびに再生成されるので、毎回 source 行を追記。
+# repo 管理の shell-aliases.sh を指すので、エイリアスの実体は版管理される。
+source_line="source \"$here/shell-aliases.sh\""
+if ! grep -qF "$source_line" "$HOME/.bashrc" 2>/dev/null; then
+  printf '\n# AtCoder shell helpers (devcontainer)\n%s\n' "$source_line" >> "$HOME/.bashrc"
+  echo "added shell-aliases source line to ~/.bashrc"
+fi
