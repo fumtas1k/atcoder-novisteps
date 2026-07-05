@@ -8,7 +8,7 @@
 |-|-|-|-|
 |[Forbidden List 2](https://atcoder.jp/contests/abc440/tasks/abc440_d)|ABC 440 - D|二分探索|[ruby](./problems/1Q/abc440/d/main.rb)|
 |[Teleport Maze](https://atcoder.jp/contests/abc436/tasks/abc436_d)|ABC 436 - D|幅優先探索(BFS)|[ruby](./problems/1Q/abc436/d/main.rb)|
-|[Reachability Query 2](https://atcoder.jp/contests/abc435/tasks/abc435_d)|ABC 435 - D|||
+|[Reachability Query 2](https://atcoder.jp/contests/abc435/tasks/abc435_d)|ABC 435 - D|逆グラフ+伝播|[ruby](./problems/1Q/abc435/d/main.rb)|
 |[Clouds](https://atcoder.jp/contests/abc434/tasks/abc434_d)|ABC 434 - D|||
 |[183183](https://atcoder.jp/contests/abc433/tasks/abc433_d)|ABC 433 - D|||
 |[Candy Tribulation](https://atcoder.jp/contests/abc432/tasks/abc432_c)|ABC 432 - C|||
