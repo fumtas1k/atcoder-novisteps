@@ -1,0 +1,49 @@
+{
+  "name": "atcoder-novisteps",
+  // Debian ベース。vscode ユーザーと基本ツールを持つ公式イメージ。
+  "image": "mcr.microsoft.com/devcontainers/base:bookworm",
+
+  // ランタイムはすべて Features でバージョン固定 → どのマシンでも同じ環境を再現。
+  "features": {
+    // .ruby-version と一致させる
+    "ghcr.io/devcontainers/features/ruby:1": {
+      "version": "3.4.5"
+    },
+    // acc(atcoder-cli) 用
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    },
+    // uv。oj はこの uv 経由で入れる。uv がツール用の Python を自前で用意するので
+    // Python feature は不要。
+    "ghcr.io/va-h/devcontainers-features/uv:1": {
+      "version": "latest"
+    }
+  },
+
+  // uv tool / uv が入れる ~/.local/bin を PATH に通す(oj のパス)
+  "remoteEnv": {
+    "PATH": "${containerEnv:PATH}:/home/vscode/.local/bin"
+  },
+
+  // ログイン状態(Cookie)を名前付き volume に永続化 → リビルドしても消えない。
+  // 認証はマシンごとの秘密なのでイメージには焼き込まず、初回に login する。
+  "mounts": [
+    "source=atcoder-oj-config,target=/home/vscode/.config/online-judge-tools,type=volume",
+    "source=atcoder-oj-data,target=/home/vscode/.local/share/online-judge-tools,type=volume",
+    "source=atcoder-acc-config,target=/home/vscode/.config/atcoder-cli-nodejs,type=volume"
+  ],
+
+  // コンテナ生成時に oj / acc / gem をインストール(バージョンピン)。
+  // uv tool install = pipx 相当。oj 実行用 Python は uv が自動で用意する。
+  "postCreateCommand": "uv tool install online-judge-tools==11.5.1 && npm install -g atcoder-cli@2.2.0 && bundle install",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "Shopify.ruby-lsp"
+      ]
+    }
+  },
+
+  "remoteUser": "vscode"
+}
