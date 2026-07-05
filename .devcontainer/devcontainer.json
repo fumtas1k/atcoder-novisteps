@@ -44,7 +44,14 @@
     "vscode": {
       "extensions": [
         "Shopify.ruby-lsp"
-      ]
+      ],
+      // ruby feature は RVM で Ruby を入れる。空の rbenv が同居しており拡張が
+      // 誤検出して活性化に失敗するため、RVM を明示する(コンテナ限定設定)。
+      "settings": {
+        "rubyLsp.rubyVersionManager": {
+          "identifier": "rvm"
+        }
+      }
     }
   },
 
