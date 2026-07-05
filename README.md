@@ -10,7 +10,7 @@
 |[Teleport Maze](https://atcoder.jp/contests/abc436/tasks/abc436_d)|ABC 436 - D|幅優先探索(BFS)|[ruby](./problems/1Q/abc436/d/main.rb)|
 |[Reachability Query 2](https://atcoder.jp/contests/abc435/tasks/abc435_d)|ABC 435 - D|逆グラフ+伝播|[ruby](./problems/1Q/abc435/d/main.rb)|
 |[Clouds](https://atcoder.jp/contests/abc434/tasks/abc434_d)|ABC 434 - D|2次元imos+累積和|[ruby](./problems/1Q/abc434/d/main.rb)|
-|[183183](https://atcoder.jp/contests/abc433/tasks/abc433_d)|ABC 433 - D|||
+|[183183](https://atcoder.jp/contests/abc433/tasks/abc433_d)|ABC 433 - D|剰余カウント|[ruby](./problems/1Q/abc433/d/main.rb)|
 |[Candy Tribulation](https://atcoder.jp/contests/abc432/tasks/abc432_c)|ABC 432 - C|||
 |[Neighbor Distance](https://atcoder.jp/contests/abc430/tasks/abc430_d)|ABC 430 - D|||
 |[Shift String](https://atcoder.jp/contests/abc430/tasks/abc430_e)|ABC 430 - E|||
