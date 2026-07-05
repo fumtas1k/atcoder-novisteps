@@ -56,3 +56,6 @@ build-iPhoneSimulator/
 # .rubocop-https?--*
 
 node_modules/
+
+# Ruby LSP が生成するローカルインデックス/カスタムバンドル
+/.ruby-lsp/

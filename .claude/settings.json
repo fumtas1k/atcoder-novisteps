@@ -19,6 +19,7 @@
   },
   "enabledPlugins": {
     "context7@claude-plugins-official": true,
-    "superpowers@superpowers-marketplace": true
+    "superpowers@superpowers-marketplace": true,
+    "ruby-lsp@claude-plugins-official": true
   }
 }

@@ -39,3 +39,7 @@ cp -r "$here/acc-config/." "$HOME/.config/atcoder-cli-nodejs/"
 
 # gem
 bundle install
+
+# ruby-lsp: Claude の ruby-lsp プラグインが bare `ruby-lsp` コマンドを起動するため
+# グローバルに導入(プロジェクトの gem は ruby-lsp が bundle を検出して解決する)。
+gem install ruby-lsp
