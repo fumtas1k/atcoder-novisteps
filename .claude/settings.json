@@ -1,7 +1,16 @@
 {
+  "permissions": {
+    "defaultMode": "auto"
+  },
+  "model": "opus[1m]",
   "statusLine": {
     "type": "command",
     "command": "bash \"${CLAUDE_PROJECT_DIR:-.}/.claude/statusline-command.sh\""
+  },
+  "enabledPlugins": {
+    "context7@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true,
+    "ruby-lsp@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
     "claude-plugins-official": {
@@ -9,17 +18,6 @@
         "source": "github",
         "repo": "anthropics/claude-plugins-official"
       }
-    },
-    "superpowers-marketplace": {
-      "source": {
-        "source": "github",
-        "repo": "obra/superpowers-marketplace"
-      }
     }
-  },
-  "enabledPlugins": {
-    "context7@claude-plugins-official": true,
-    "superpowers@superpowers-marketplace": true,
-    "ruby-lsp@claude-plugins-official": true
   }
 }
