@@ -4,3 +4,4 @@ source "https://rubygems.org"
 
 gem "ac-library-rb"
 gem "numo-narray"
+gem "rbtree"

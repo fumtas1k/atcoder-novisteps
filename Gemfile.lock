@@ -8,6 +8,7 @@ GEM
     prime (0.1.4)
       forwardable
       singleton
+    rbtree (0.4.7)
     singleton (0.3.0)
 
 PLATFORMS
@@ -17,6 +18,7 @@ PLATFORMS
 DEPENDENCIES
   ac-library-rb
   numo-narray
+  rbtree
 
 BUNDLED WITH
    2.6.9
