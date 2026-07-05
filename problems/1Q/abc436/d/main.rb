@@ -1,4 +1,4 @@
-# Q1
+# 1Q
 # ABC436/D
 # Teleport Maze
 # 幅優先探索(BFS)

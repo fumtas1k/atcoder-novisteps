@@ -1,4 +1,4 @@
-# Q1
+# 1Q
 # ABC435/D
 # Reachability Query 2
 # グラフ / 逆辺伝播
