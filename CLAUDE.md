@@ -25,11 +25,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 - 問題文: `https://atcoder.jp/contests/<contest>/tasks/<contest>_<problem>`
   例: `problems/1Q/abc436/d/` → `https://atcoder.jp/contests/abc436/tasks/abc436_d`
-- 解説: 上の URL の末尾に `/editorial` を付ける（`.../tasks/abc436_d/editorial`）、
-  またはコンテスト全体の解説一覧 `https://atcoder.jp/contests/<contest>/editorial`
+- 解説: 上の URL の末尾に `/editorial` を付けたページ（`.../tasks/abc436_d/editorial`）は
+  **解説へのリンク一覧**でしかない。ここで終わらず、そこに載っている実際の解説記事
+  `https://atcoder.jp/contests/<contest>/editorial/<id>` まで辿って本文を読むこと。
+  日本語・英語（`en_translator` 版）が別記事なので、必要な方を選ぶ。
+  （コンテスト全体の一覧は `https://atcoder.jp/contests/<contest>/editorial`。）
 
 `WebFetch` でこれらを取得して、制約（`N` の上限など）・入出力形式・想定計算量を確認する。
 確認できた制約と解法をレビュー結果の根拠として示す。
+なお開催直後の回は解説が未公開（"There is no editorial yet."）のことがある。その場合は
+自分でサンプル実行・最悪ケース生成などで正しさと計算量を検証する。
 
 ## ディレクトリ構成
 
