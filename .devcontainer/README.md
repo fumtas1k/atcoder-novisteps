@@ -13,8 +13,12 @@ VS Code の「Dev Containers」拡張、GitHub Codespaces、または `devcontai
 | oj (online-judge-tools) | 11.5.1 (+ api-client 10.10.1) | `uv tool install`。未マージ修正 PR #173 をパッチ適用（下記） |
 | acc (atcoder-cli) | 2.2.0 | `npm install -g` |
 | gem | Gemfile.lock 準拠 | `bundle install` |
+| Claude Code CLI | 最新 | 公式 devcontainer feature（VS Code 拡張も同梱） |
 
 これらは `postCreateCommand` でコンテナ生成時に自動導入される。
+
+Claude Code は初回に `claude` を実行してログインする。ログイン情報は名前付き volume
+（`~/.claude`）に永続化されるので、以降のリビルドでは再ログイン不要。
 
 ## 初回だけやること：ログイン（Cloudflare 対応）
 

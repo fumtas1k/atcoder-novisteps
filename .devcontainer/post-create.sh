@@ -4,9 +4,9 @@ set -euo pipefail
 
 here="$(cd "$(dirname "$0")" && pwd)"
 
-# volume マウントで root 所有になる ~/.local ~/.config を vscode に戻す
-# (これがないと uv が ~/.local/share/uv/... を作れず Permission denied)。
-sudo chown -R vscode:vscode "$HOME/.local" "$HOME/.config"
+# volume マウントで root 所有になる ~/.local ~/.config ~/.claude を vscode に戻す
+# (これがないと uv や claude が書き込めず Permission denied)。
+sudo chown -R vscode:vscode "$HOME/.local" "$HOME/.config" "$HOME/.claude"
 
 # oj: online-judge-api-client を 10.10.1 に固定して公式 PyPI から導入。
 # uv tool install = pipx 相当。oj 実行用 Python は uv が自動で用意する。
