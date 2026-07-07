@@ -8,28 +8,13 @@ here="$(cd "$(dirname "$0")" && pwd)"
 # (これがないと uv や claude が書き込めず Permission denied)。
 sudo chown -R vscode:vscode "$HOME/.local" "$HOME/.config" "$HOME/.claude"
 
-# oj: online-judge-api-client を 10.10.1 に固定して公式 PyPI から導入。
-# uv tool install = pipx 相当。oj 実行用 Python は uv が自動で用意する。
-uv tool install online-judge-tools==11.5.1 --with online-judge-api-client==10.10.1
-
-# 未マージ修正 (online-judge-tools/api-client PR #173) を公式版に当てる。
-# AtCoder のメモリ表記変更 (KB/MB → KiB/MiB) 未対応で AssertionError になるのを直す。
-# 上流にマージされたら、この行と oj-atcoder-memory.patch を削除してよい。
-site="$("$(uv tool dir)/online-judge-tools/bin/python" -c 'import onlinejudge, os; print(os.path.dirname(os.path.dirname(onlinejudge.__file__)))')"
-if grep -q "KiB" "$site/onlinejudge/service/atcoder.py"; then
-  echo "oj-atcoder-memory.patch already applied; skipping"
-else
-  git apply -p1 --unsafe-paths --directory="$site" "$here/oj-atcoder-memory.patch"
-  echo "applied oj-atcoder-memory.patch to $site"
-fi
+# oj / acc / AtCoder メモリ表記パッチは devcontainer feature
+# ghcr.io/fumtas1k/devcontainer-features/atcoder-toolkit がビルド時に導入済み。
 
 # statusLine スクリプト(.claude/statusline-command.sh)が使う jq を用意(未導入なら)。
 if ! command -v jq >/dev/null 2>&1; then
   sudo apt-get update && sudo apt-get install -y --no-install-recommends jq
 fi
-
-# acc(atcoder-cli)
-npm install -g atcoder-cli@2.2.0
 
 # acc の既定設定・テンプレート(ruby)を配置。
 # config.json / ruby テンプレを上書きし、session.json(認証)は残す。
@@ -37,12 +22,8 @@ npm install -g atcoder-cli@2.2.0
 mkdir -p "$HOME/.config/atcoder-cli-nodejs"
 cp -r "$here/acc-config/." "$HOME/.config/atcoder-cli-nodejs/"
 
-# gem
-bundle install
-
-# ruby-lsp: Claude の ruby-lsp プラグインが bare `ruby-lsp` コマンドを起動するため
-# グローバルに導入(プロジェクトの gem は ruby-lsp が bundle を検出して解決する)。
-gem install ruby-lsp
+# gem(ac-library-rb / rbtree / numo-narray / ruby-lsp)は devcontainer feature
+# ghcr.io/fumtas1k/devcontainer-features/atcoder-ruby がビルド時にグローバル導入済み。
 
 # シェルヘルパー(atcr / rtest / ropen)を bash で有効化。
 # ~/.bashrc は volume 非永続でリビルドのたびに再生成されるので、毎回 source 行を追記。

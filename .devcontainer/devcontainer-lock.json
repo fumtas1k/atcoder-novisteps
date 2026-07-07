@@ -15,10 +15,15 @@
       "resolved": "ghcr.io/devcontainers/features/ruby@sha256:1c9bbde293ba6f21449a58be34a358ffa2b3846f31cb3146409b26ab3f13e1a2",
       "integrity": "sha256:1c9bbde293ba6f21449a58be34a358ffa2b3846f31cb3146409b26ab3f13e1a2"
     },
-    "ghcr.io/va-h/devcontainers-features/uv:1": {
-      "version": "1.1.4",
-      "resolved": "ghcr.io/va-h/devcontainers-features/uv@sha256:a15737142539d150ef4d358e2d6a7424a0a2f3dc43b29a3aa1b50162a8b11bc1",
-      "integrity": "sha256:a15737142539d150ef4d358e2d6a7424a0a2f3dc43b29a3aa1b50162a8b11bc1"
+    "ghcr.io/fumtas1k/devcontainer-features/atcoder-ruby:1": {
+      "version": "1.0.0",
+      "resolved": "ghcr.io/fumtas1k/devcontainer-features/atcoder-ruby@sha256:695c17132a14cca91dc2816fa084a61858cfa80b253668246614f626df394bb5",
+      "integrity": "sha256:695c17132a14cca91dc2816fa084a61858cfa80b253668246614f626df394bb5"
+    },
+    "ghcr.io/fumtas1k/devcontainer-features/atcoder-toolkit:1": {
+      "version": "1.0.1",
+      "resolved": "ghcr.io/fumtas1k/devcontainer-features/atcoder-toolkit@sha256:2ef7c140e0ef9f5ba21f2ac152344f8f73ba08129cb34b1aa5b4b89dcfb9f2b6",
+      "integrity": "sha256:2ef7c140e0ef9f5ba21f2ac152344f8f73ba08129cb34b1aa5b4b89dcfb9f2b6"
     }
   }
 }

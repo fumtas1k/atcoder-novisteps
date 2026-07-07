@@ -15,6 +15,7 @@ atcr() {
 
 # rtest: カレントの main.rb を tests/ のサンプルで実行(-N は末尾改行差を無視)。
 #   alias ではなく関数にする(alias は非対話シェルで展開されず環境依存になるため)。
+#   gem はグローバル導入(atcoder-ruby feature)なので bundle exec は不要。
 rtest() {
-  oj t -c "bundle exec ruby main.rb" -d tests -N
+  oj t -c "ruby main.rb" -d tests -N
 }
