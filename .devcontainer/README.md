@@ -9,13 +9,14 @@ VS Code の「Dev Containers」拡張、GitHub Codespaces、または `devcontai
 |---|---|---|
 | Ruby | 3.4.5（`.ruby-version` と一致） | devcontainer feature |
 | Node.js | LTS | devcontainer feature（acc 用） |
-| uv | latest | devcontainer feature |
-| oj (online-judge-tools) | 11.5.1 (+ api-client 10.10.1) | `uv tool install`。未マージ修正 PR #173 をパッチ適用（下記） |
-| acc (atcoder-cli) | 2.2.0 | `npm install -g` |
-| gem | Gemfile.lock 準拠 | `bundle install` |
+| oj (online-judge-tools) | 11.5.1 (+ api-client 10.10.1) | 自作 feature [atcoder-toolkit](https://github.com/fumtas1k/devcontainer-features)。未マージ修正 PR #173 をパッチ適用（下記） |
+| acc (atcoder-cli) | 2.2.0 | 同上（atcoder-toolkit feature） |
+| gem (ac-library-rb 1.2.0 / rbtree 0.4.7 / numo-narray 0.9.2.1 / ruby-lsp) | `devcontainer.json` の `gems` オプションで固定 | 自作 feature [atcoder-ruby](https://github.com/fumtas1k/devcontainer-features)。グローバル導入なので `bundle exec` 不要（ジャッジ環境と同じ） |
 | Claude Code CLI | 最新 | 公式 devcontainer feature（VS Code 拡張も同梱） |
 
-これらは `postCreateCommand` でコンテナ生成時に自動導入される。
+ツール類はすべて features としてイメージビルド時に導入される。`postCreateCommand`
+（post-create.sh）に残るのは volume の chown・acc 設定配置・シェルエイリアスなど
+リポ固有の仕上げのみ。
 
 Claude Code は初回に `claude` を実行してログインする。ログイン情報は名前付き volume
 （`~/.claude`）に永続化されるので、以降のリビルドでは再ログイン不要。
@@ -24,7 +25,8 @@ Claude Code は初回に `claude` を実行してログインする。ログイ�
 
 現在の AtCoder はログイン時に Cloudflare のチェックが入るため、コンテナ内からの
 `oj login` / `acc login` は通らない。代わりに **ブラウザで取得した `REVEL_SESSION`
-Cookie を oj と acc の両方に流し込む**（ヘルパースクリプトが両方に書き込む）。
+Cookie を oj と acc の両方に流し込む**（atcoder-toolkit feature 同梱の
+`set-atcoder-session` コマンドが両方に書き込む）。
 
 - oj  : `~/.local/share/online-judge-tools/cookie.jar`（LWPCookieJar 形式）
 - acc : `~/.config/atcoder-cli-nodejs/session.json`（`{"cookies":["name=value",...]}`）
@@ -37,7 +39,7 @@ Cookie を oj と acc の両方に流し込む**（ヘルパースクリプト�
 3. コンテナ内ターミナルで:
 
    ```sh
-   uv run --no-project .devcontainer/set-atcoder-session.py
+   set-atcoder-session
    # プロンプトに REVEL_SESSION の値を貼り付ける
    ```
 
@@ -89,8 +91,8 @@ acc submit main.rb
 現行の api-client 10.10.1 は AtCoder のメモリ表記変更（KB/MB → KiB/MiB）に未対応で、
 問題データ取得時に `AssertionError` で止まる。上流の未マージ修正
 [online-judge-tools/api-client#173](https://github.com/online-judge-tools/api-client/pull/173)
-を、公式版インストール後に `oj-atcoder-memory.patch` として `post-create.sh` が当てている
-（第三者 fork は使わず、公式 PyPI 版＋差分パッチのみ）。適用は冪等。
+を、[atcoder-toolkit feature](https://github.com/fumtas1k/devcontainer-features) が
+ビルド時に公式 PyPI 版へ当てている（第三者 fork は使わない）。
 
-**上流にマージされたら**、`post-create.sh` のパッチ適用ブロックと
-`oj-atcoder-memory.patch` を削除し、`online-judge-api-client` のバージョンピンを見直すこと。
+**上流にマージされたら**、`devcontainer.json` の atcoder-toolkit feature で
+`"applyAtcoderMemoryPatch": false` を指定し、`apiClientVersion` のピンを見直すこと。

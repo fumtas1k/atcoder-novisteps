@@ -52,19 +52,20 @@ problems/<グレード>/<contest>/<problem>/
 ## 開発ワークフロー（Dev Container 内）
 
 環境は `.devcontainer/` の Dev Container で再現する。詳細は `.devcontainer/README.md`。
-`acc`(atcoder-cli) / `oj`(online-judge-tools) / Ruby 3.4.5 / `bundle` が入っており、
+`acc`(atcoder-cli) / `oj`(online-judge-tools) / Ruby 3.4.5 と競プロ用 gem
+（グローバル導入、Bundler 不要）が入っており、
 `.devcontainer/shell-aliases.sh` の関数が `~/.bashrc` から読み込まれている。
 
 - **問題セットアップ**: `atcr <contest> <problem>`
   （`acc new <contest>` でテスト DL → `<contest>/<problem>` へ移動 → `main.rb` を開く）
 - **サンプルテスト**: `rtest`
-  （= `oj t -c "bundle exec ruby main.rb" -d tests -N`。`-N` で末尾改行差を無視）
-- **単体実行**: `bundle exec ruby main.rb < problems/.../tests/sample-1.in`
+  （= `oj t -c "ruby main.rb" -d tests -N`。`-N` で末尾改行差を無視）
+- **単体実行**: `ruby main.rb < problems/.../tests/sample-1.in`
 - **提出**: `acc submit main.rb`（または `oj submit`）
 
 `acc new` は要ログイン。認証は Cloudflare 対策で `oj/acc login` が通らないため、
-ブラウザで取得した `REVEL_SESSION` Cookie を
-`uv run --no-project .devcontainer/set-atcoder-session.py` で流し込む（`.devcontainer/README.md` 参照）。
+ブラウザで取得した `REVEL_SESSION` Cookie を `set-atcoder-session` コマンド
+（atcoder-toolkit feature 同梱）で流し込む（`.devcontainer/README.md` 参照）。
 
 ## 解答の規約（レビュー時の前提）
 
@@ -76,7 +77,8 @@ problems/<グレード>/<contest>/<problem>/
 - 定数: `MOD`（既定 `10**9+7`、`998244353` はコメントアウトで用意）、`INF = 1 << 60`
 - 入力は `gets` / `gets.split.map(&:to_i)` 系。既存解答（`problems/1Q/abc436/d/main.rb` など）のスタイルに合わせる（ファイル冒頭にグレード・問題名・解法をコメント）。
 
-利用可能な gem は `Gemfile` に固定: `ac-library-rb`, `numo-narray`, `rbtree`。
+利用可能な gem は `.devcontainer/devcontainer.json` の atcoder-ruby feature の `gems`
+オプションに固定: `ac-library-rb`, `numo-narray`, `rbtree`（グローバル導入、`bundle exec` 不要）。
 自前でデータ構造を書く前に `ac-library-rb` に無いか確認する（`atcoder-ruby` スキル参照）。
 
 ## README.md の更新

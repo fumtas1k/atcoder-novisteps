@@ -9,22 +9,25 @@
     "ghcr.io/devcontainers/features/ruby:1": {
       "version": "3.4.5"
     },
-    // acc(atcoder-cli) 用
+    // acc(atcoder-cli) の実行に使う Node.js（atcoder-toolkit はこの npm で acc を入れる）
     "ghcr.io/devcontainers/features/node:1": {
       "version": "lts"
     },
-    // uv。oj はこの uv 経由で入れる。uv がツール用の Python を自前で用意するので
-    // Python feature は不要。
-    "ghcr.io/va-h/devcontainers-features/uv:1": {
-      "version": "latest"
+    // oj(online-judge-tools) + acc(atcoder-cli) + AtCoder メモリ表記パッチ(api-client PR #173)。
+    // 自作 feature: https://github.com/fumtas1k/devcontainer-features
+    "ghcr.io/fumtas1k/devcontainer-features/atcoder-toolkit:1": {
+      "ojVersion": "11.5.1",
+      "apiClientVersion": "10.10.1",
+      "accVersion": "2.2.0"
+    },
+    // 競プロ用 gem をグローバルに焼き込み(ruby feature の後に実行される)。
+    // AtCoder のジャッジ環境と同じく Bundler 不要で `ruby main.rb` が動く。
+    // gem を増やす/上げるときはここを編集(旧 Gemfile.lock の役割)。
+    "ghcr.io/fumtas1k/devcontainer-features/atcoder-ruby:1": {
+      "gems": "ac-library-rb@1.2.0 rbtree@0.4.7 numo-narray@0.9.2.1 ruby-lsp"
     },
     // Claude Code CLI(公式 feature)。CLI をグローバル導入し VS Code 拡張も追加。
     "ghcr.io/anthropics/devcontainer-features/claude-code:1": {}
-  },
-
-  // uv tool / uv が入れる ~/.local/bin を PATH に通す(oj のパス)
-  "remoteEnv": {
-    "PATH": "${containerEnv:PATH}:/home/vscode/.local/bin"
   },
 
   // ログイン状態(Cookie)を名前付き volume に永続化 → リビルドしても消えない。
@@ -37,7 +40,7 @@
     "source=atcoder-claude,target=/home/vscode/.claude,type=volume"
   ],
 
-  // コンテナ生成時のセットアップ(chown / oj / パッチ / acc / gem)は post-create.sh に集約。
+  // コンテナ生成時のセットアップ(chown / acc 設定 / gem)は post-create.sh に集約。
   "postCreateCommand": "bash .devcontainer/post-create.sh",
 
   "customizations": {
