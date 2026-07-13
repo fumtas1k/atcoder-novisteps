@@ -24,7 +24,8 @@ Claude Code は初回に `claude` を実行してログインする。ログイ�
 
 gh (GitHub CLI) も PR 作成・マージに使うので初回に `gh auth login` する
 （GitHub.com → HTTPS → ブラウザ認証）。認証はマシンごとの秘密なのでイメージには
-含めない。なお `~/.config/gh` は volume 化していないので、リビルドすると再ログインが必要。
+含めないが、`~/.config/gh` を名前付き volume に永続化しているので、以降のリビルドでは
+再ログイン不要。
 
 ## 初回だけやること：ログイン（Cloudflare 対応）
 

@@ -45,7 +45,9 @@
     "source=atcoder-oj-data,target=/home/vscode/.local/share/online-judge-tools,type=volume",
     "source=atcoder-acc-config,target=/home/vscode/.config/atcoder-cli-nodejs,type=volume",
     // Claude Code のログイン情報・設定を永続化(リビルドで再ログイン不要)
-    "source=atcoder-claude,target=/home/vscode/.claude,type=volume"
+    "source=atcoder-claude,target=/home/vscode/.claude,type=volume",
+    // gh(GitHub CLI)の認証情報を永続化(リビルドで再ログイン不要)
+    "source=atcoder-gh-config,target=/home/vscode/.config/gh,type=volume"
   ],
 
   // コンテナ生成時のセットアップ(chown / acc 設定 / gem)は post-create.sh に集約。
