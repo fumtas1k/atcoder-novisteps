@@ -13,7 +13,7 @@
 |[183183](https://atcoder.jp/contests/abc433/tasks/abc433_d)|ABC 433 - D|剰余カウント|[ruby](./problems/1Q/abc433/d/main.rb)|
 |[Candy Tribulation](https://atcoder.jp/contests/abc432/tasks/abc432_c)|ABC 432 - C|||
 |[Neighbor Distance](https://atcoder.jp/contests/abc430/tasks/abc430_d)|ABC 430 - D|||
-|[Shift String](https://atcoder.jp/contests/abc430/tasks/abc430_e)|ABC 430 - E|||
+|[Shift String](https://atcoder.jp/contests/abc430/tasks/abc430_e)|ABC 430 - E|Z algorithm|[ruby](./problems/1Q/abc430/e/main.rb)|
 |[On AtCoder Conference](https://atcoder.jp/contests/abc429/tasks/abc429_d)|ABC 429 - D|||
 |[The Simple Game](https://atcoder.jp/contests/abc427/tasks/abc427_d)|ABC 427 - D|||
 |[Pop and Insert](https://atcoder.jp/contests/abc426/tasks/abc426_d)|ABC 426 - D|||
