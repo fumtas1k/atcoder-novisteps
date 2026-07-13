@@ -13,6 +13,7 @@ VS Code の「Dev Containers」拡張、GitHub Codespaces、または `devcontai
 | acc (atcoder-cli) | 2.2.0 | 同上（atcoder-toolkit feature） |
 | gem (ac-library-rb 1.2.0 / rbtree 0.4.7 / numo-narray 0.9.2.1 / ruby-lsp) | `devcontainer.json` の `gems` オプションで固定 | 自作 feature [atcoder-ruby](https://github.com/fumtas1k/devcontainer-features)。グローバル導入なので `bundle exec` 不要（ジャッジ環境と同じ） |
 | Claude Code CLI | 最新 | 公式 devcontainer feature（VS Code 拡張も同梱） |
+| gh (GitHub CLI) | 最新 | 公式 devcontainer feature（PR 作成・マージ用） |
 
 ツール類はすべて features としてイメージビルド時に導入される。`postCreateCommand`
 （post-create.sh）に残るのは volume の chown・acc 設定配置・シェルエイリアスなど
@@ -20,6 +21,11 @@ VS Code の「Dev Containers」拡張、GitHub Codespaces、または `devcontai
 
 Claude Code は初回に `claude` を実行してログインする。ログイン情報は名前付き volume
 （`~/.claude`）に永続化されるので、以降のリビルドでは再ログイン不要。
+
+gh (GitHub CLI) も PR 作成・マージに使うので初回に `gh auth login` する
+（GitHub.com → HTTPS → ブラウザ認証）。認証はマシンごとの秘密なのでイメージには
+含めないが、`~/.config/gh` を名前付き volume に永続化しているので、以降のリビルドでは
+再ログイン不要。
 
 ## 初回だけやること：ログイン（Cloudflare 対応）
 

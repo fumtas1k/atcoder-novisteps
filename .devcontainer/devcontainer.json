@@ -3,6 +3,12 @@
   // Debian ベース。vscode ユーザーと基本ツールを持つ公式イメージ。
   "image": "mcr.microsoft.com/devcontainers/base:bookworm",
 
+  // タイムゾーンを JST に固定(既定は UTC)。tzdata は同梱済みなので TZ 指定だけで
+  // date / Ruby の Time.now などライブラリ時刻がすべて Asia/Tokyo になる。
+  "containerEnv": {
+    "TZ": "Asia/Tokyo"
+  },
+
   // ランタイムはすべて Features でバージョン固定 → どのマシンでも同じ環境を再現。
   "features": {
     // .ruby-version と一致させる
@@ -27,7 +33,9 @@
       "gems": "ac-library-rb@1.2.0 rbtree@0.4.7 numo-narray@0.9.2.1 ruby-lsp"
     },
     // Claude Code CLI(公式 feature)。CLI をグローバル導入し VS Code 拡張も追加。
-    "ghcr.io/anthropics/devcontainer-features/claude-code:1": {}
+    "ghcr.io/anthropics/devcontainer-features/claude-code:1": {},
+    // GitHub CLI(公式 feature)。PR 作成・マージ等に使う(`gh auth login` は初回に実施)。
+    "ghcr.io/devcontainers/features/github-cli:1": {}
   },
 
   // ログイン状態(Cookie)を名前付き volume に永続化 → リビルドしても消えない。
@@ -37,7 +45,9 @@
     "source=atcoder-oj-data,target=/home/vscode/.local/share/online-judge-tools,type=volume",
     "source=atcoder-acc-config,target=/home/vscode/.config/atcoder-cli-nodejs,type=volume",
     // Claude Code のログイン情報・設定を永続化(リビルドで再ログイン不要)
-    "source=atcoder-claude,target=/home/vscode/.claude,type=volume"
+    "source=atcoder-claude,target=/home/vscode/.claude,type=volume",
+    // gh(GitHub CLI)の認証情報を永続化(リビルドで再ログイン不要)
+    "source=atcoder-gh-config,target=/home/vscode/.config/gh,type=volume"
   ],
 
   // コンテナ生成時のセットアップ(chown / acc 設定 / gem)は post-create.sh に集約。
