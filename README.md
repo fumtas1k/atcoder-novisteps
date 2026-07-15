@@ -15,7 +15,7 @@
 |[Neighbor Distance](https://atcoder.jp/contests/abc430/tasks/abc430_d)|ABC 430 - D|||
 |[Shift String](https://atcoder.jp/contests/abc430/tasks/abc430_e)|ABC 430 - E|Z algorithm|[ruby](./problems/1Q/abc430/e/main.rb)|
 |[On AtCoder Conference](https://atcoder.jp/contests/abc429/tasks/abc429_d)|ABC 429 - D|座標圧縮+環状尺取り|[ruby](./problems/1Q/abc429/d/main.rb)|
-|[The Simple Game](https://atcoder.jp/contests/abc427/tasks/abc427_d)|ABC 427 - D|||
+|[The Simple Game](https://atcoder.jp/contests/abc427/tasks/abc427_d)|ABC 427 - D|ゲーム+動的計画法|[ruby](./problems/1Q/abc427/d/main.rb)|
 |[Pop and Insert](https://atcoder.jp/contests/abc426/tasks/abc426_d)|ABC 426 - D|||
 |[Ulam-Warburton Automaton](https://atcoder.jp/contests/abc425/tasks/abc425_d)|ABC 425 - D|||
 |[Least Unbalanced](https://atcoder.jp/contests/abc422/tasks/abc422_d)|ABC 422 - D|||
