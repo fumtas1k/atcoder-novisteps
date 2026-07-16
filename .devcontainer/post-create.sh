@@ -8,6 +8,12 @@ here="$(cd "$(dirname "$0")" && pwd)"
 # (これがないと uv や claude が書き込めず Permission denied)。
 sudo chown -R vscode:vscode "$HOME/.local" "$HOME/.config" "$HOME/.claude"
 
+# Claude Code CLI(公式 feature)は root 所有でグローバル導入されるため、
+# vscode ユーザーだと自動アップデートが Permission denied で失敗する。
+# npm グローバル領域を vscode 所有に戻して自動更新をそのまま通す(冪等)。
+npm_prefix="$(npm config get prefix)"
+sudo chown -R vscode:vscode "$npm_prefix/lib/node_modules" "$npm_prefix/bin"
+
 # oj / acc / AtCoder メモリ表記パッチは devcontainer feature
 # ghcr.io/fumtas1k/devcontainer-features/atcoder-toolkit がビルド時に導入済み。
 
