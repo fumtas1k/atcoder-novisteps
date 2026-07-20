@@ -46,6 +46,8 @@
     "source=atcoder-acc-config,target=/home/vscode/.config/atcoder-cli-nodejs,type=volume",
     // Claude Code のログイン情報・設定を永続化(リビルドで再ログイン不要)
     "source=atcoder-claude,target=/home/vscode/.claude,type=volume",
+    // Codex CLI のログイン情報・設定を永続化(リビルドで再ログイン不要)
+    "source=atcoder-codex,target=/home/vscode/.codex,type=volume",
     // gh(GitHub CLI)の認証情報を永続化(リビルドで再ログイン不要)
     "source=atcoder-gh-config,target=/home/vscode/.config/gh,type=volume"
   ],

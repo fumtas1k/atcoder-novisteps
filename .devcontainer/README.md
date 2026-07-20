@@ -13,6 +13,7 @@ VS Code の「Dev Containers」拡張、GitHub Codespaces、または `devcontai
 | acc (atcoder-cli) | 2.2.0 | 同上（atcoder-toolkit feature） |
 | gem (ac-library-rb 1.2.0 / rbtree 0.4.7 / numo-narray 0.9.2.1 / ruby-lsp) | `devcontainer.json` の `gems` オプションで固定 | 自作 feature [atcoder-ruby](https://github.com/fumtas1k/devcontainer-features)。グローバル導入なので `bundle exec` 不要（ジャッジ環境と同じ） |
 | Claude Code CLI | 最新 | 公式 devcontainer feature（VS Code 拡張も同梱） |
+| Codex CLI (`@openai/codex`) | 最新 | `post-create.sh` が `npm install --global`（公式 feature が無いため） |
 | gh (GitHub CLI) | 最新 | 公式 devcontainer feature（PR 作成・マージ用） |
 
 ツール類はすべて features としてイメージビルド時に導入される。`postCreateCommand`
@@ -21,6 +22,21 @@ VS Code の「Dev Containers」拡張、GitHub Codespaces、または `devcontai
 
 Claude Code は初回に `claude` を実行してログインする。ログイン情報は名前付き volume
 （`~/.claude`）に永続化されるので、以降のリビルドでは再ログイン不要。
+
+Codex CLI も同様に初回に `codex` を実行してログインする。設定・認証は名前付き volume
+（`~/.codex`）に永続化されるので、以降のリビルドでは再ログイン不要。
+
+### AI への指示ファイル（AGENTS.md）とスキルの共通化
+
+Claude Code・Codex など複数の AI で同じ指示・スキルを共有するため、次の構成にしている:
+
+- **`AGENTS.md`（リポジトリ直下）** … 唯一のソース。Codex はこれを直接読む。
+- **`CLAUDE.md`** … 中身は `@AGENTS.md` の 1 行のみ。Claude Code の import 構文で
+  AGENTS.md を取り込む。
+- **`atcoder-ruby` スキル** … 実体は `.agents/skills/atcoder-ruby/`。
+  `.claude/skills/atcoder-ruby` はそこへのシンボリックリンク（Claude はリンク越しに読む）。
+
+指示やスキルを直したいときは `AGENTS.md` / `.agents/skills/` の実体を編集する。
 
 gh (GitHub CLI) も PR 作成・マージに使うので初回に `gh auth login` する
 （GitHub.com → HTTPS → ブラウザ認証）。認証はマシンごとの秘密なのでイメージには
