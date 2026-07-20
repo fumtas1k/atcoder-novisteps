@@ -4,15 +4,23 @@ set -euo pipefail
 
 here="$(cd "$(dirname "$0")" && pwd)"
 
-# volume マウントで root 所有になる ~/.local ~/.config ~/.claude を vscode に戻す
-# (これがないと uv や claude が書き込めず Permission denied)。
-sudo chown -R vscode:vscode "$HOME/.local" "$HOME/.config" "$HOME/.claude"
+# volume マウントで root 所有になる ~/.local ~/.config ~/.claude ~/.codex を vscode に戻す
+# (これがないと uv / claude / codex が書き込めず Permission denied)。
+# mount の無い素の環境で手動再実行しても落ちないよう、無ければ作ってから chown する。
+mkdir -p "$HOME/.codex"
+sudo chown -R vscode:vscode "$HOME/.local" "$HOME/.config" "$HOME/.claude" "$HOME/.codex"
 
 # Claude Code CLI(公式 feature)は root 所有でグローバル導入されるため、
 # vscode ユーザーだと自動アップデートが Permission denied で失敗する。
 # npm グローバル領域を vscode 所有に戻して自動更新をそのまま通す(冪等)。
 npm_prefix="$(npm config get prefix)"
 sudo chown -R vscode:vscode "$npm_prefix/lib/node_modules" "$npm_prefix/bin"
+
+# Codex CLI をグローバルに導入する。認証・設定は $HOME/.codex の名前付き volume に残る。
+# (Claude Code は公式 feature 導入だが、Codex は feature が無いため npm で入れる。冪等。)
+if ! command -v codex >/dev/null 2>&1; then
+  npm install --global @openai/codex
+fi
 
 # oj / acc / AtCoder メモリ表記パッチは devcontainer feature
 # ghcr.io/fumtas1k/devcontainer-features/atcoder-toolkit がビルド時に導入済み。
