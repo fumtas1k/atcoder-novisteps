@@ -20,6 +20,7 @@ Claude Code は `CLAUDE.md`（`@AGENTS.md` を import）経由でこのファイ
 
 - 主なタスク: バグ・計算量（TLE/MLE リスク）の指摘、より速い/簡潔な書き方の提案、`ac-library-rb` で置き換えられる箇所の指摘、Ruby/CRuby 特有の落とし穴の指摘。
 - Ruby コードをレビュー・改善・デバッグ・助言するときは、たとえ「自明に見えても」必ず **`atcoder-ruby` スキル** に従う（CRuby の計算量・イディオム・`ac-library-rb` の使い方が検証済みでまとまっている。`Array#shift`/`#unshift` の計算量など Claude が間違えやすい点も網羅）。
+  - Claude Code はこのスキルを自動ロードする。**Codex など他の AI はスキル機構を持たない**ため、Ruby コードを触る前に `.agents/skills/atcoder-ruby/SKILL.md` とその `references/` を直接読んでから従うこと。
 - 求められない限り、人間の解答を勝手に全面書き換えしない。まず指摘・提案してから直す。
 
 ### レビュー時は問題文と解説を必ず確認する

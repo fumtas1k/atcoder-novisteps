@@ -6,6 +6,8 @@ here="$(cd "$(dirname "$0")" && pwd)"
 
 # volume マウントで root 所有になる ~/.local ~/.config ~/.claude ~/.codex を vscode に戻す
 # (これがないと uv / claude / codex が書き込めず Permission denied)。
+# mount の無い素の環境で手動再実行しても落ちないよう、無ければ作ってから chown する。
+mkdir -p "$HOME/.codex"
 sudo chown -R vscode:vscode "$HOME/.local" "$HOME/.config" "$HOME/.claude" "$HOME/.codex"
 
 # Claude Code CLI(公式 feature)は root 所有でグローバル導入されるため、
