@@ -17,7 +17,7 @@
 |[On AtCoder Conference](https://atcoder.jp/contests/abc429/tasks/abc429_d)|ABC 429 - D|座標圧縮+環状尺取り|[ruby](./problems/1Q/abc429/d/main.rb)|
 |[The Simple Game](https://atcoder.jp/contests/abc427/tasks/abc427_d)|ABC 427 - D|ゲーム+動的計画法|[ruby](./problems/1Q/abc427/d/main.rb)|
 |[Pop and Insert](https://atcoder.jp/contests/abc426/tasks/abc426_d)|ABC 426 - D|ランレングス+最長連続区間|[ruby](./problems/1Q/abc426/d/main.rb)|
-|[Ulam-Warburton Automaton](https://atcoder.jp/contests/abc425/tasks/abc425_d)|ABC 425 - D|||
+|[Ulam-Warburton Automaton](https://atcoder.jp/contests/abc425/tasks/abc425_d)|ABC 425 - D|シミュレーション+幅優先探索(BFS)|[ruby](./problems/1Q/abc425/d/main.rb)|
 |[Least Unbalanced](https://atcoder.jp/contests/abc422/tasks/abc422_d)|ABC 422 - D|||
 |[RLE Moving](https://atcoder.jp/contests/abc421/tasks/abc421_d)|ABC 421 - D|||
 |[Reachability Query](https://atcoder.jp/contests/abc420/tasks/abc420_e)|ABC 420 - E|||
