@@ -50,7 +50,7 @@
 |[Hierarchical Majority Vote](https://atcoder.jp/contests/abc391/tasks/abc391_e)|ABC 391 - E|||
 |[Squares in Circle](https://atcoder.jp/contests/abc389/tasks/abc389_d)|ABC 389 - D|||
 |[Simultaneous Kagamimochi](https://atcoder.jp/contests/abc388/tasks/abc388_e)|ABC 388 - E|||
-|[Snake Numbers](https://atcoder.jp/contests/abc387/tasks/abc387_c)|ABC 387 - C|||
+|[Snake Numbers](https://atcoder.jp/contests/abc387/tasks/abc387_c)|ABC 387 - C|桁ごとの数え上げ(桁DP)|[ruby](./problems/1Q/abc387/c/main.rb)|
 |[Snaky Walk](https://atcoder.jp/contests/abc387/tasks/abc387_d)|ABC 387 - D|||
 |[Diagonal Separation](https://atcoder.jp/contests/abc386/tasks/abc386_d)|ABC 386 - D|||
 |[Santa Claus 2](https://atcoder.jp/contests/abc385/tasks/abc385_d)|ABC 385 - D|||
