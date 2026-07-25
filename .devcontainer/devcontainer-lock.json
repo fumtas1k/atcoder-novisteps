@@ -21,9 +21,9 @@
       "integrity": "sha256:1c9bbde293ba6f21449a58be34a358ffa2b3846f31cb3146409b26ab3f13e1a2"
     },
     "ghcr.io/fumtas1k/devcontainer-features/atcoder-ruby:1": {
-      "version": "1.0.0",
-      "resolved": "ghcr.io/fumtas1k/devcontainer-features/atcoder-ruby@sha256:695c17132a14cca91dc2816fa084a61858cfa80b253668246614f626df394bb5",
-      "integrity": "sha256:695c17132a14cca91dc2816fa084a61858cfa80b253668246614f626df394bb5"
+      "version": "1.0.1",
+      "resolved": "ghcr.io/fumtas1k/devcontainer-features/atcoder-ruby@sha256:5c37b11785deaaa73275a32da1f8689b933baa02c91c82d1205754cb99a14735",
+      "integrity": "sha256:5c37b11785deaaa73275a32da1f8689b933baa02c91c82d1205754cb99a14735"
     },
     "ghcr.io/fumtas1k/devcontainer-features/atcoder-toolkit:1": {
       "version": "1.0.1",
