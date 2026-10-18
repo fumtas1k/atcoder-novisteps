@@ -66,6 +66,8 @@ keys are cheapest.
 | `base.pow(e, m)` | O(log e) modular exponentiation — always use this, never `(base**e) % m` |
 | `1 << n` | O(1) for small n; far faster than `2**n` |
 | `n.gcd(m)`, `n.bit_length`, `n.digits` | cheap library methods; don't reimplement |
+| `n.prime?` (`Integer#prime?`) | **~2 µs at n ≈ 10^12** — it is Miller–Rabin internally, not trial division |
+| `Prime.prime?(n)` | **~31 ms at n ≈ 10^12** — generator + trial division to √n. Same library, 10^4× slower. Don't confuse the two; see `primes.md`. |
 
 ## Rule of thumb for AtCoder time limits (Ruby, ~10× slower than C++)
 

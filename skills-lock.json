@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "atcoder-ruby": {
+      "source": "fumtas1k/skills",
+      "sourceType": "github",
+      "skillPath": "skills/atcoder-ruby/SKILL.md",
+      "computedHash": "4fa2816c12c1276361fc31b6c2cdbd60fd82c0313bd0d5cac6a9a021635a726d"
+    }
+  }
+}

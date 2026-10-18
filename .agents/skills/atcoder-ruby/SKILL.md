@@ -87,6 +87,7 @@ Full table in `references/complexity.md`. The ones that cause wrong advice:
 | `Array#min` / `#max` / `#sum` | O(n) | assuming they cache |
 | `Hash#[]` / `#include?`, `Set#include?` | O(1) average | — |
 | `Array#sort` / `#sort_by` | O(n log n) | — |
+| `Integer#prime?` (`n.prime?`) | **~2 µs at n ≈ 10^12** — Miller–Rabin internally | "Ruby's prime check is too slow" as a blanket claim. That is true only of `Prime.prime?` (~31 ms), a *different* method from the same library. See `references/primes.md`. |
 
 `shift`/`unshift` being O(1) is *why* a plain `Array` works as a queue or deque here — you
 do not need a special structure just to pop the front. (`ac-library-rb`'s `Deque` exists
@@ -242,6 +243,9 @@ mirror it.
 - `references/sorted-set.md` — self-written ordered set / multiset (the gap ac-library-rb
   doesn't fill): copy-paste `SortedMultiset`/`SortedSet` (√-decomposition) and the
   Fenwick+coord-compression variant, with API tables and when to use which.
+- `references/primes.md` — primality testing: `Prime.prime?` vs `Integer#prime?` (10^4× apart),
+  the deterministic Miller–Rabin template and its proven base bounds, sieve costs, and when a
+  sieve is the wrong tool.
 - `references/idioms.md` — House-style idioms with code: file header, lambda recursion,
   coordinate compression, `Range#bsearch`, `case/in` query dispatch, `tally`, array `puts`
   output, interactive `$stdout.flush`, digit-DP and doubling templates.
